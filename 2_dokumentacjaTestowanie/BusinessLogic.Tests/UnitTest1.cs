@@ -37,12 +37,26 @@ namespace BusinessLogic.Tests
         }
         [Theory]
         [InlineData(5, 3, 2)]
+        [InlineData(2140, 3, 2137)]
+        [InlineData(2134, 3, 2131)]
         public void TestSubPar(int x, int y, int expected)
         {
             Calculator calculator = new Calculator();
             int c = calculator.Sub(x, y);
 
             Assert.Equal(expected, c);
+        }
+
+
+
+        [Theory]
+        [InlineData(int.MaxValue,1)]
+
+        public void TestCheeky(int x, int y)
+        {
+            Calculator calculator = new Calculator();
+            Assert.Throws<OverflowException>(()=> calculator.Add(x, y));
+
         }
     }
 }
